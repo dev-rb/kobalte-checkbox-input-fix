@@ -5,6 +5,7 @@ import { createForm, toCustom } from "@modular-forms/solid";
 
 type CheckedTest = {
   testChecked: boolean;
+  fruits: string;
 };
 
 const App: Component = () => {
@@ -16,7 +17,10 @@ const App: Component = () => {
     createSignal(false);
 
   const [form, { Form, Field, FieldArray }] = createForm<CheckedTest>({
-    initialValues: { testChecked: true },
+    initialValues: {
+      testChecked: true,
+      fruits: "Orange",
+    },
   });
 
   return (
@@ -41,70 +45,32 @@ const App: Component = () => {
             </Checkbox.Root>
           )}
         </Field>
+        <Field name="fruits" type="string">
+          {(field, props) => (
+            <RadioGroup.Root class="radio-group" defaultValue={field.value}>
+              <RadioGroup.Label class="radio-group__label">
+                Favorite fruit not working
+              </RadioGroup.Label>
+              <div class="radio-group__items">
+                <For each={["Apple", "Orange", "Watermelon"]}>
+                  {(fruit) => (
+                    <RadioGroup.Item value={fruit} class="radio">
+                      <RadioGroup.ItemInput class="radio__input" {...props} />
+                      <RadioGroup.ItemControl class="radio__control">
+                        <RadioGroup.ItemIndicator class="radio__indicator" />
+                      </RadioGroup.ItemControl>
+                      <RadioGroup.ItemLabel class="radio__label">
+                        {fruit}
+                      </RadioGroup.ItemLabel>
+                    </RadioGroup.Item>
+                  )}
+                </For>
+              </div>
+            </RadioGroup.Root>
+          )}
+        </Field>
         <button type="submit">Submit</button>
       </Form>
-      <Checkbox.Root name="works not" class="checkbox">
-        <Checkbox.Input
-          class="checkbox__input"
-          checked={checkedNotWorking()}
-          onChange={(event) => {
-            setCheckedNotWorking(event.currentTarget.checked);
-          }}
-        />
-        <Checkbox.Control class="checkbox__control">
-          <Checkbox.Indicator>x</Checkbox.Indicator>
-        </Checkbox.Control>
-        <Checkbox.Label class="checkbox__label">Works not</Checkbox.Label>
-      </Checkbox.Root>
-      <RadioGroup.Root
-        class="radio-group"
-        value={radioGroupValueWorking()}
-        onChange={setRadioGroupValueWorking}
-      >
-        <RadioGroup.Label class="radio-group__label">
-          Favorite fruit working
-        </RadioGroup.Label>
-        <div class="radio-group__items">
-          <For each={["Apple", "Orange", "Watermelon"]}>
-            {(fruit) => (
-              <RadioGroup.Item value={fruit} class="radio">
-                <RadioGroup.ItemInput class="radio__input" />
-                <RadioGroup.ItemControl class="radio__control">
-                  <RadioGroup.ItemIndicator class="radio__indicator" />
-                </RadioGroup.ItemControl>
-                <RadioGroup.ItemLabel class="radio__label">
-                  {fruit}
-                </RadioGroup.ItemLabel>
-              </RadioGroup.Item>
-            )}
-          </For>
-        </div>
-      </RadioGroup.Root>
-      <RadioGroup.Root class="radio-group" value={radioGroupValueNotWorking()}>
-        <RadioGroup.Label class="radio-group__label">
-          Favorite fruit not working
-        </RadioGroup.Label>
-        <div class="radio-group__items">
-          <For each={["Apple", "Orange", "Watermelon"]}>
-            {(fruit) => (
-              <RadioGroup.Item value={fruit} class="radio">
-                <RadioGroup.ItemInput
-                  class="radio__input"
-                  onChange={(event) =>
-                    setRadioGroupValueNotWorking(event.currentTarget.value)
-                  }
-                />
-                <RadioGroup.ItemControl class="radio__control">
-                  <RadioGroup.ItemIndicator class="radio__indicator" />
-                </RadioGroup.ItemControl>
-                <RadioGroup.ItemLabel class="radio__label">
-                  {fruit}
-                </RadioGroup.ItemLabel>
-              </RadioGroup.Item>
-            )}
-          </For>
-        </div>
-      </RadioGroup.Root>
     </div>
   );
 };

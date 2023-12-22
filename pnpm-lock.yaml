@@ -6,13 +6,13 @@ settings:
 
 patchedDependencies:
   '@kobalte/core@0.11.2':
-    hash: plizerivl6psg4q52eix7gqqw4
+    hash: lm7umued2tui47ktomd57ikrqm
     path: patches/@kobalte__core@0.11.2.patch
 
 dependencies:
   '@kobalte/core':
     specifier: ^0.11.2
-    version: 0.11.2(patch_hash=plizerivl6psg4q52eix7gqqw4)(solid-js@1.7.6)
+    version: 0.11.2(patch_hash=lm7umued2tui47ktomd57ikrqm)(solid-js@1.7.6)
   '@modular-forms/solid':
     specifier: ^0.20.0
     version: 0.20.0(solid-js@1.7.6)
@@ -680,7 +680,7 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@kobalte/core@0.11.2(patch_hash=plizerivl6psg4q52eix7gqqw4)(solid-js@1.7.6):
+  /@kobalte/core@0.11.2(patch_hash=lm7umued2tui47ktomd57ikrqm)(solid-js@1.7.6):
     resolution: {integrity: sha512-B19TvpmR0E8n7LJqopF0lbMayBErnWJ5MlTTnrgVAFU1up/2Bo1O6ldTK1c5NikmpppzIK2A8ovUwIhRqw/3Uw==}
     peerDependencies:
       solid-js: ^1.7.11
